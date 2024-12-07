@@ -1,84 +1,93 @@
 .todo-container {
-    margin: 50px auto;
-    width: 600px;
+  margin: 50px auto;
+  width: 600px;
 }
 
-.todo-title{
-    font-size: 35px;
-    color: orange;
-    text-align: center;
-    font-weight: 600;
+.todo-title {
+  font-size: 35px;
+  color: orange;
+  text-align: center;
+  font-weight: 600;
 }
-.todo-new{
-    width: 100%;
-    display: flex;
-    gap: 15px;
-    justify-content: center;
+
+.todo-new {
+  width: 100%;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
 }
-.todo-data{
-    margin-top: 20px;
-    border-radius: 5px;
-    border: 1px solid #ccc ;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+
+.todo-data {
+  margin-top: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 input {
-    width: auto;
-    height: 25px;
-    background-color: #EAF1F5;
-    border: none;
-    border-radius: 5px;
-    
+  width: auto;
+  height: 25px;
+  background-color: #EAF1F5;
+  border: none;
+  border-radius: 5px;
+
 }
- button {
-    
-    width: 50px;
-    height: 25px;
-    background-color: blue;
-    border: none;
-    border-radius: 5px;
-    color: white;
 
- }
- .todo-image{
-    text-align: center;
-    margin-top: 15px;
- }
+button {
 
- .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
+  width: 50px;
+  height: 25px;
+  background-color: blue;
+  border: none;
+  border-radius: 5px;
+  color: white;
+
+}
+
+.todo-image {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .logo {
+    animation: logo-spin infinite 20s linear;
   }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
-     .logo {
-      animation: logo-spin infinite 20s linear;
-    }
-  }
-  @keyframes logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
   }
 
-  .todo-item {
-    display: flex;
-    justify-content: space-between;
+  to {
+    transform: rotate(360deg);
   }
-  .todo-item button{
-    background-color: red;
-  }
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo-item button {
+  background-color: red;
+}
