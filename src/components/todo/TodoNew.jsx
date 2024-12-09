@@ -27,7 +27,7 @@ const TodoNew = (props) => {
                 onChange={(event) => handleOnChange(event.target.value)}
                 value={valueInput}
             />
-            <button
+            <button className="btnadd"
                 style={{ cursor: "pointer" }}
                 onClick={handleClick}>Add
             </button>

@@ -28,24 +28,15 @@
 }
 
 input {
+  padding: 5px;
   width: auto;
-  height: 25px;
   background-color: #EAF1F5;
   border: none;
   border-radius: 5px;
 
 }
 
-button {
 
-  width: 50px;
-  height: 25px;
-  background-color: blue;
-  border: none;
-  border-radius: 5px;
-  color: white;
-
-}
 
 .todo-image {
   text-align: center;
@@ -90,4 +81,17 @@ button {
 
 .todo-item button {
   background-color: red;
+  width: 50px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+}
+.btnadd{
+  background-color: blue;
+  width: 50px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  color: white;
 }
