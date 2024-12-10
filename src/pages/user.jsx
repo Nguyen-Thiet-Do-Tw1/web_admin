@@ -9,9 +9,19 @@ const UserPage = () => {
         loadUser();
     }, []);
 
+    const [current, setCurrent] = useState(1);
+    const [pageSize, setPageSize] = useState(12);
+    const [total, setTotal] = useState(0);
+
+
     const loadUser = async () => {
-        const res = await fetchALLUserAPI()
-        setDataUser(res.data)
+        const res = await fetchALLUserAPI(current, pageSize)
+        if(res.data){
+            setDataUser(res.data.result)
+            setCurrent(res.data.meta.current)
+            setPageSize(res.data.meta.pageSize)
+            setTotal(res.data.meta.total)
+        }
 
     }
     return (
@@ -19,7 +29,11 @@ const UserPage = () => {
             <UserForm loadUser={loadUser} />
             <UserTable
                 loadUser={loadUser}
-                dataUsers={dataUsers} />
+                dataUsers={dataUsers}
+                current={current}
+                pageSize={pageSize}
+                total={total}
+            />
         </div>
     )
 }

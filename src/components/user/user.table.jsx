@@ -1,5 +1,5 @@
 
-import { Table,Popconfirm, notification } from 'antd';
+import { Table, Popconfirm, notification } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import UpdateUserModal from './update.user.modal';
 import { useState } from 'react';
@@ -9,7 +9,7 @@ import { deleteUserAPI } from "../../services/api.service"
 
 
 const UserTable = (props) => {
-  const { dataUsers, loadUser } = props
+  const { dataUsers, loadUser, current, pageSize, total } = props
   const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
   const [dataUpdate, setDataUpdate] = useState(null);
 
@@ -19,20 +19,28 @@ const UserTable = (props) => {
   const handleDelete = async (id) => {
     const res = await deleteUserAPI(id)
     if (res.data) {
-        notification.success({
-            message: "Delete user",
-            description: " Xóa user thành công"
-        })
-        await loadUser();
+      notification.success({
+        message: "Delete user",
+        description: " Xóa user thành công"
+      })
+      await loadUser();
     } else {
-        notification.error({
-            message: "Error delete user",
-            description: JSON.stringify(res.message)
-        })
+      notification.error({
+        message: "Error delete user",
+        description: JSON.stringify(res.message)
+      })
     }
-}
+  }
 
   const columns = [
+    {
+      title: "STT",
+      render: (_, record, index) => {
+        return (
+          <>{index + 1}</>
+        )
+      }
+    },
     {
       title: 'Id',
       dataIndex: '_id',
@@ -70,11 +78,11 @@ const UserTable = (props) => {
             title="Delete user"
             placement="left"
             description="Are you sure to delete user?"
-            onConfirm={() => {handleDelete(record._id)}}
+            onConfirm={() => { handleDelete(record._id) }}
             okText="Yes"
             cancelText="No"
           >
-            <DeleteOutlined             
+            <DeleteOutlined
               style={{ cursor: "pointer", color: "red" }} />
           </Popconfirm>
 
@@ -89,6 +97,21 @@ const UserTable = (props) => {
         columns={columns}
         dataSource={dataUsers}
         rowKey={"_id"}
+        pagination={
+          {
+            current: current,
+            pageSize: pageSize,
+            showSizeChanger: true,
+            total: total,
+            showTotal: (total, range) => {
+              return(
+                <div>
+                  {range[0]} - {range[1]} trên {total} rows
+                </div>
+              )
+            }
+          }
+        }
       />
       <UpdateUserModal
         isModalUpdateOpen={isModalUpdateOpen}
@@ -102,6 +125,7 @@ const UserTable = (props) => {
         setIsDetailDrawerOpen={setIsDetailDrawerOpen}
         dataDetails={dataDetails}
         setDataDetails={setDataDetails}
+        loadUser={loadUser}
       />
     </>
 
