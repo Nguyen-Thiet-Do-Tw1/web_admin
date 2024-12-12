@@ -9,7 +9,7 @@ import { deleteUserAPI } from "../../services/api.service"
 
 
 const UserTable = (props) => {
-  const { dataUsers, loadUser, current, pageSize, total } = props
+  const { dataUsers, loadUser, current, pageSize, total, setPageSize, setCurrent } = props
   const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
   const [dataUpdate, setDataUpdate] = useState(null);
 
@@ -37,7 +37,7 @@ const UserTable = (props) => {
       title: "STT",
       render: (_, record, index) => {
         return (
-          <>{index + 1}</>
+          <>{(index + 1) + (current-1) * pageSize}</>
         )
       }
     },
@@ -91,6 +91,21 @@ const UserTable = (props) => {
     },
   ];
 
+  const onPageChange = (pagination, filters, sorter, extra) => {
+      if(pagination && pagination.current){
+        if(+pagination.current !== +current){
+          setCurrent(+pagination.current) // them dau + de convert sang so nguyen
+          
+        }
+      }    
+      if(pagination && pagination.pageSize){
+        if(+pagination.pageSize !== +pageSize){
+          setPageSize(+pagination.pageSize) // them dau + de convert sang so nguyen
+          
+        }
+      }  
+  }
+
   return (
     <>
       <Table
@@ -112,6 +127,7 @@ const UserTable = (props) => {
             }
           }
         }
+        onChange={onPageChange}
       />
       <UpdateUserModal
         isModalUpdateOpen={isModalUpdateOpen}

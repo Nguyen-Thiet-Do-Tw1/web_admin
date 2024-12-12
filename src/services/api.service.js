@@ -1,7 +1,6 @@
 import axios from "./axio.customize"
 
 const CreateUserAPI= (fullName, password, email, phone) => {
-    const accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2NzU1YjQ3YjMzOTRhYzY0MWNjNTA1OTciLCJhdmF0YXIiOiIyMTIzMmYyOTdhNTdhNWE3NDM4OTRhMGU0YTgwMWZjMy5wbmciLCJpYXQiOjE3MzM3NDk0MjgsImV4cCI6MTczMzc4NTQyOH0.DaW-Ku657KjssSIrHM3YNBvAn4-znAP14ENQgInyPZY";
     const URL_BACKEND = "/api/v1/user";
         const data = {
             fullName: fullName,
@@ -9,61 +8,39 @@ const CreateUserAPI= (fullName, password, email, phone) => {
             email: email,
             phone: phone
         };
-        return  axios.post(URL_BACKEND, data, {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`, 
-                },
-            });
+        return  axios.post(URL_BACKEND, data);
 }
 
 const UpdateUserAPI= (_id, fullName, phone) => {
-    const accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2NzU1YjQ3YjMzOTRhYzY0MWNjNTA1OTciLCJhdmF0YXIiOiIyMTIzMmYyOTdhNTdhNWE3NDM4OTRhMGU0YTgwMWZjMy5wbmciLCJpYXQiOjE3MzM3NDk0MjgsImV4cCI6MTczMzc4NTQyOH0.DaW-Ku657KjssSIrHM3YNBvAn4-znAP14ENQgInyPZY";
     const URL_BACKEND = "/api/v1/user";
         const data = {
             _id: _id,
             fullName: fullName,
             phone: phone
         };
-        return  axios.put(URL_BACKEND, data, {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`, 
-                },
-            });
+        return  axios.put(URL_BACKEND, data);
 }
 const fetchALLUserAPI= (current,pageSize) => {
-    const accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2NzU1YjQ3YjMzOTRhYzY0MWNjNTA1OTciLCJhdmF0YXIiOiIyMTIzMmYyOTdhNTdhNWE3NDM4OTRhMGU0YTgwMWZjMy5wbmciLCJpYXQiOjE3MzM3NDk0MjgsImV4cCI6MTczMzc4NTQyOH0.DaW-Ku657KjssSIrHM3YNBvAn4-znAP14ENQgInyPZY";
     const URL_BACKEND = `/api/v1/user?current=${current}&pageSize=${pageSize}`;
-        return  axios.get(URL_BACKEND, {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`, 
-                },
-            });
+        return  axios.get(URL_BACKEND);
 }
 const deleteUserAPI= (_id) => {
-    const accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2NzU1YjQ3YjMzOTRhYzY0MWNjNTA1OTciLCJhdmF0YXIiOiIyMTIzMmYyOTdhNTdhNWE3NDM4OTRhMGU0YTgwMWZjMy5wbmciLCJpYXQiOjE3MzM3NDk0MjgsImV4cCI6MTczMzc4NTQyOH0.DaW-Ku657KjssSIrHM3YNBvAn4-znAP14ENQgInyPZY";
     const URL_BACKEND = `/api/v1/user/${_id}`;
-        return  axios.delete(URL_BACKEND, {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`, 
-                },
-            });
+        return  axios.delete(URL_BACKEND);
 }
 
 const handleUploadFile= (file, folder) => {
-    const accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2NzU1YjQ3YjMzOTRhYzY0MWNjNTA1OTciLCJhdmF0YXIiOiIyMTIzMmYyOTdhNTdhNWE3NDM4OTRhMGU0YTgwMWZjMy5wbmciLCJpYXQiOjE3MzM3NDk0MjgsImV4cCI6MTczMzc4NTQyOH0.DaW-Ku657KjssSIrHM3YNBvAn4-znAP14ENQgInyPZY";
     const URL_BACKEND = `/api/v1/file/upload`;
     const bodyFormData = new FormData();
     bodyFormData.append("fileImg", file)
         return  axios.post(URL_BACKEND, bodyFormData, {
                 headers: {
-                    Authorization: `Bearer ${accessToken}`, 
                     "upload-type": folder,
                     "Content-Type": "multipart/form-data", 
                 },
             });
 }
 const UpdateUserAvataAPI= (avatar,_id, fullName, phone ) => {
-    const accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2NzU1YjQ3YjMzOTRhYzY0MWNjNTA1OTciLCJhdmF0YXIiOiIyMTIzMmYyOTdhNTdhNWE3NDM4OTRhMGU0YTgwMWZjMy5wbmciLCJpYXQiOjE3MzM3NDk0MjgsImV4cCI6MTczMzc4NTQyOH0.DaW-Ku657KjssSIrHM3YNBvAn4-znAP14ENQgInyPZY";
     const URL_BACKEND = "/api/v1/user";
         const data = {
             _id: _id,
@@ -71,15 +48,40 @@ const UpdateUserAvataAPI= (avatar,_id, fullName, phone ) => {
             fullName: fullName,
             phone: phone
         };
-        return  axios.put(URL_BACKEND, data, {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`, 
-                },
-            });
+        return  axios.put(URL_BACKEND, data);
+}
+const registerUserAPI= (fullName, password, email, phone) => {
+    const URL_BACKEND = "/api/v1/user/register";
+        const data = {
+            fullName: fullName,
+            password: password,
+            email: email,
+            phone: phone
+        };
+        return  axios.post(URL_BACKEND, data);
+}
+const loginUserAPI= (email, password) => {
+    const URL_BACKEND = "/api/v1/auth/login";
+        const data = {
+            username: email,
+            password: password,
+            // delay: 2000
+        };
+        return  axios.post(URL_BACKEND, data);
+}
+
+const getAccountAPI= () => {
+    const URL_BACKEND = "/api/v1/auth/account";
+        return  axios.get(URL_BACKEND);
+}
+const logoutAPI= () => {
+    const URL_BACKEND = "/api/v1/auth/logout";
+        return  axios.post(URL_BACKEND);
 }
 
 
 export {
     CreateUserAPI, UpdateUserAPI, fetchALLUserAPI, deleteUserAPI,
-    handleUploadFile, UpdateUserAvataAPI
+    handleUploadFile, UpdateUserAvataAPI, registerUserAPI, loginUserAPI,
+    getAccountAPI,logoutAPI
 }

@@ -13,15 +13,18 @@ import ProductPage from './pages/product.jsx';
 import './styles/global.css'
 import TodoApp from './components/todo/TodoApp.jsx';
 import ErrorPage from './pages/error.jsx';
+import { AuthWapper } from './components/context/auth.comtext.jsx';
+import PrivateRoute from './pages/private.route.jsx';
 const router = createBrowserRouter([
+
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
-        element: <TodoApp/>
+        element: <TodoApp />
       },
       {
         path: "/users",
@@ -29,7 +32,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/products",
-        element: <ProductPage />,
+        element: (
+          <PrivateRoute>
+            <ProductPage />
+          </PrivateRoute>
+        )
       }
     ]
   },
@@ -45,8 +52,11 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  <>
     {/* <App /> */}
-    <RouterProvider router={router} />
-  </StrictMode>,
+    <AuthWapper>
+      <RouterProvider router={router} />
+
+    </AuthWapper>
+  </>,
 )
